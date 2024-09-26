@@ -1,5 +1,7 @@
 import pygame
 from constants import *
+from circleshape import *
+from player import *
 
 def main():
     print("Starting asteroids!")
@@ -10,6 +12,8 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
+    
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     while True:
         # Check if user has clicked exit window button, then returns (which auto calls display.quit())
@@ -19,6 +23,7 @@ def main():
         
         # Fills the screen with black
         screen.fill(000000)
+        player.draw(screen)
         # Updates screen's content
         pygame.display.flip()
 
