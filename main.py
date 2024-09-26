@@ -13,7 +13,14 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
     
+    # Create empty groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    Player.containers = (updatable, drawable)
+
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    
 
     while True:
         # Check if user has clicked exit window button, then returns (which auto calls display.quit())
@@ -21,10 +28,14 @@ def main():
             if event.type == pygame.QUIT:
                 return
         
-        # Fills the screen with black
+        for obj in updatable:
+            obj.update(dt)
+
         screen.fill(000000)
-        player.draw(screen)
-        player.update(dt)
+
+        for obj in drawable:
+            obj.draw(screen)
+        
         # Updates screen's content
         pygame.display.flip()
 
